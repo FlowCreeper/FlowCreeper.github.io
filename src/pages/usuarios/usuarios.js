@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
-import ImageCard from "../../components/imagecard"
-import { Grid2 as Grid, Typography } from "@mui/material"
+import { Alert, CircularProgress, Grid2 as Grid, Snackbar } from "@mui/material"
 import DialogComponent from "../../components/dialog"
 import TextCard from "../../components/textcard"
 
@@ -8,15 +7,33 @@ export default function UsersPage() {
   const [lista, setLista] = useState([])
   const [open, setOpen] = useState(false)
   const [clickeddata, setClickedData] = useState({})
+  const [error, setError] = useState(null);  // State to track errors
+  const [loading, setLoading] = useState(true);  // State to show loading status
+  const [openSnackbar, setOpenSnackbar] = useState(false);  // State for Snackbar visibility
 
-  useEffect(() =>{
+  useEffect(() => {
     async function restCall() {
-      const resp = await fetch('http://localhost:6969/api/infos')
-      const dados = await resp.json()
-      setLista(dados)
+      try {
+        const resp = await fetch('http://localhost:6969/api/infos');
+        
+        if (!resp.ok) {
+          throw new Error('Network response was not ok');  // Throw error for bad responses
+        }
+        
+        const dados = await resp.json();
+        setLista(dados);
+        setError(null);  // Reset error if fetch succeeds
+      } catch (error) {
+        console.error('Failed to fetch data:', error);
+        setError('Failed to fetch data. Please try again later.');
+        setOpenSnackbar(true)
+      } finally {
+        setLoading(false);  // Stop loading after fetch completes
+      }
     }
-    restCall()
-  }, [lista])
+    
+    restCall();
+  }, []);  // Empty array ensures effect only runs once
   
   const handleClick = (id) => {
     setClickedData(lista.find((e) => e.id === id))
@@ -27,8 +44,29 @@ export default function UsersPage() {
     setOpen(false)
   }
 
+  const handleCloseSnackbar = () => {
+    setOpenSnackbar(false);  // Close Snackbar when user dismisses it
+  };
+
   return (
     <>
+      <Grid container sx={{justifyContent: 'center', mt: '18%'}}>
+        {loading && <CircularProgress color="success"/>}  {/* MUI CircularProgress for loading indicator */}
+
+        {/* Use MUI Alert component to display error message */}
+        {error && (
+          <Snackbar
+            open={openSnackbar}
+            autoHideDuration={6000}  // Snackbar closes after 6 seconds
+            onClose={handleCloseSnackbar}
+            anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
+          >
+            <Alert onClose={handleCloseSnackbar} severity="error" sx={{ width: '100%' }}>
+              {error}
+            </Alert>
+          </Snackbar>
+        )}
+      </Grid>
       <Grid container spacing={5}>
         {
           lista.map(

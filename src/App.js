@@ -1,4 +1,4 @@
-import { AppBar, Box, Container, CssBaseline, Drawer, IconButton, List, ListItem, ListItemButton, ListItemText, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Container, CssBaseline, Drawer, IconButton, Toolbar, Typography } from "@mui/material";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { MenuRounded } from "@mui/icons-material";
 import { useState } from "react";
@@ -60,9 +60,9 @@ function App() {
   ]
 
   const DrawerList = (
-    <Box sx={{ width: 250 }} role="presentation" >
+    <Box sx={{ width: 250 , mt: 2}} role="presentation" >
       
-        <Tree items = {opcoes}/>
+        <Tree items={opcoes}/>
       
     </Box>
   )
