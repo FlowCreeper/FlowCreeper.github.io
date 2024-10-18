@@ -1,3 +1,14 @@
+# Tutoriais
+
+## Criação de páginas
+
+- Cria uma pasta pra armazenar as páginas daquele grupo
+- Adiciona o href no arquivo ./src/pages/main.js
+- Adiciona na constante opcoes do arquivo ./src/App.js no campo id o nome da categoria com _ no inicio
+e a href sem _ no inicio  
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
