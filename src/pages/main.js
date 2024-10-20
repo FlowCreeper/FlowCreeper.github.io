@@ -1,12 +1,14 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./home";
 import CardBattle from "./projetinhos/cardbattles";
-import UsersPage from "./usuarios/usuarios";
+import UsersPage from "./curso/usuarios";
 import TODO from "./todotemplate";
 import Atividade1 from "./mat dis/pla1";
 import Atividade2 from "./mat dis/pla2";
 import DPAtv2 from "./mat dis/dp2";
 import Conexo from "./grafos/conexo";
+import Gnn from "./grafos/gnn";
+import Apresentacao from "./analise desempenho/apresentacao";
 
 const Main = () => {
   return (   
@@ -22,8 +24,11 @@ const Main = () => {
         </Route>
         <Route path="grafos/">
           <Route path="conexo" element={<Conexo/>}/>
+          <Route path="gnn" element={<Gnn/>}/>
         </Route>
-        
+        <Route path="analise/">
+          <Route path="apresentacao" element={<Apresentacao />}/>
+        </Route>
       </Route>
       <Route path="*" element={<TODO/>}/>
     </Routes>

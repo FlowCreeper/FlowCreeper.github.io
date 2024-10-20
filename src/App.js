@@ -11,7 +11,7 @@ function App() {
 
   const theme = createTheme({
     colorSchemes: {
-      light: true,
+      dark: true,
     },
   });
 
@@ -48,13 +48,14 @@ function App() {
       label: 'Grafos',
       children: [
         { id: 'grafos/conexo', label: 'Conexo - Desconexo' },
+        { id: 'grafos/gnn', label: 'Rede neural - Grafos' },
       ],
     },
     {
       id: '_ada',
       label: 'Analise de Desempenho',
       children: [
-        { id: 'td2', label: 'TODO' },
+        { id: 'analise/apresentacao', label: 'Apresentação' },
       ],
     },
   ]
