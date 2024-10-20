@@ -1,4 +1,4 @@
-import { Button, Checkbox, Input, Typography, Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
+import { Button, Checkbox, Typography, Accordion, AccordionSummary, AccordionDetails, Container, TextField } from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useState } from "react";
 
@@ -109,9 +109,9 @@ export default function Apresentacao() {
     }
 
     return (
-      <>
+      <Container sx={{justifyItems: 'center'}}>
         {/* Campo para definir a quantidade de números no array */}
-        <Input type="number" placeholder="Quantidade de elementos" onChange={(e) => setQuantidade(e.target.value)} />
+        <TextField type="number" label="Quantidade de elementos" onChange={(e) => setQuantidade(e.target.value)} />
 
         {/* Componente que alterna o estado de ordenado/desordenado */}
         <LabelOrganizado />
@@ -136,6 +136,6 @@ export default function Apresentacao() {
             </AccordionDetails>
           </Accordion>
         ))}
-      </>
+      </Container>
     );
 }

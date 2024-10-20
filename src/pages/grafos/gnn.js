@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Grid, Box, Container, Typography, Input } from '@mui/material';
+import { Button, Grid, Box, Container, Typography, TextField } from '@mui/material';
 
 const Gnn = () => {
   const [grid, setGrid] = useState(
@@ -53,7 +53,7 @@ const Gnn = () => {
         </Grid>
       </Box>
       <Box display="flex" justifyContent="center" mt={3}>
-        <Input placeholder='Numero de Treinos' sx={{marginRight: 4}}/>
+        <TextField type='number' label='Numero de Treinos' sx={{marginRight: 4}}/>
         <Button onClick={handleTrain} variant="contained" color="primary">
           Treinar
         </Button>
@@ -61,11 +61,14 @@ const Gnn = () => {
           Reconhecer
         </Button>
       </Box>
-        <Box>
-          <br/>
-        
-          {grid.map((v) => (JSON.stringify(v)))}
-        </Box>
+      {grid.map((v) => 
+      {
+        return (
+          <Typography sx={{textAlign: 'center'}}>
+            {JSON.stringify(v)}
+          </Typography>
+        )
+      })}
     </Container>
   );
 };
