@@ -9,6 +9,7 @@ import DPAtv2 from "./mat dis/dp2";
 import Conexo from "./grafos/conexo";
 import Gnn from "./grafos/gnn";
 import Apresentacao from "./analise desempenho/apresentacao";
+import Planar from "./grafos/planar";
 
 const Main = () => {
   return (   
@@ -25,6 +26,7 @@ const Main = () => {
         <Route path="grafos/">
           <Route path="conexo" element={<Conexo/>}/>
           <Route path="gnn" element={<Gnn/>}/>
+          <Route path="planar" element={<Planar/>}/>
         </Route>
         <Route path="analise/">
           <Route path="apresentacao" element={<Apresentacao />}/>

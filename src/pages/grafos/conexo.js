@@ -35,7 +35,7 @@ function Conexo() {
   };
 
   // Desenhar vértices e arestas
-  const draw = (ctx) => {
+  const draw = React.useCallback((ctx) => {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // Limpa o canvas
 
     // Desenhar as arestas
@@ -56,14 +56,14 @@ function Conexo() {
       ctx.fill();
       ctx.stroke();
     });
-  };
+  }, [vertices, edges]);
 
   // Atualizar o canvas quando os vértices ou arestas mudam
   React.useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
     draw(ctx);
-  }, [vertices, edges]);
+  }, [draw]);
 
   return (
     <Box
@@ -78,7 +78,7 @@ function Conexo() {
         ref={canvasRef}
         width={800}
         height={600}
-        style={{ border: "1px solid black", cursor: "crosshair" }}
+        style={{ border: "1px solid black", cursor: "crosshair", backgroundColor: 'white' }}
       />
     </Box>
   );

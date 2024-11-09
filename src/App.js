@@ -49,6 +49,7 @@ function App() {
       children: [
         { id: 'grafos/conexo', label: 'Conexo - Desconexo' },
         { id: 'grafos/gnn', label: 'Rede neural - Grafos' },
+        { id: 'grafos/planar', label: 'Planar' },
       ],
     },
     {

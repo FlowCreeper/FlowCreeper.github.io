@@ -55,7 +55,7 @@ function DPAtv2() {
           alert('Erro ao acessar as matrizes. Certifique-se de que todas as células estão preenchidas.');
           return;
         }
-        sum += matrixA[0][k] * matrixB[k][j];  // Somente a primeira linha da Matriz A
+        sum += matrixA[0][j] * matrixB[j][k];  // Somente a primeira linha da Matriz A
       }
       result.push(sum);
     }
