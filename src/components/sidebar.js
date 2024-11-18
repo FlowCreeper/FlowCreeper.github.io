@@ -7,7 +7,7 @@ const Sidebar = () => {
   return (
     <Box
       sx={{
-        width: 100,
+        width: 150,
         bgcolor: 'lightgray',
         padding: 2,
         display: 'flex',
@@ -20,7 +20,8 @@ const Sidebar = () => {
       </Typography>
       <DraggableComponent type="square" />
       <DraggableComponent type="circle" />
-      <DraggableComponent type="triangle" />
+      <DraggableComponent type="ben10" />
+      <DraggableComponent type="ben10rounded" />
     </Box>
   );
 };
@@ -34,13 +35,24 @@ const DraggableComponent = ({ type }) => {
 
   const shapeStyles = {
     square: { width: 50, height: 50, bgcolor: 'blue' },
-    circle: { width: 50, height: 50, bgcolor: 'green', borderRadius: '50%' },
-    triangle: {
+    circle: { width: 50, height: 50, bgcolor: 'blue', borderRadius: '50%' },
+    ben10: {
       width: 0,
       height: 0,
-      borderLeft: '25px solid transparent',
-      borderRight: '25px solid transparent',
-      borderBottom: '50px solid red',
+      borderBottom: '25px solid green',
+      borderTop: '25px solid green',
+      borderLeft: '25px solid black',
+      borderRight: '25px solid black',
+      bgcolor: 'transparent', // needed for MUI Paper
+    },
+    ben10rounded: {
+      width: 0,
+      height: 0,
+      borderLeft: '25px solid black',
+      borderRight: '25px solid black',
+      borderBottom: '25px solid green',
+      borderTop: '25px solid green',
+      borderRadius: '50%',
       bgcolor: 'transparent', // needed for MUI Paper
     },
   };

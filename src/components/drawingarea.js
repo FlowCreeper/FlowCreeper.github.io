@@ -158,13 +158,24 @@ const DrawingArea = () => {
     const shapeStyles = {
       square: { width: 50, height: 50, bgcolor: 'blue' },
       circle: { width: 50, height: 50, bgcolor: 'green', borderRadius: '50%' },
-      triangle: {
+      ben10: {
         width: 0,
         height: 0,
-        borderLeft: '25px solid transparent',
-        borderRight: '25px solid transparent',
-        borderBottom: '50px solid red',
-        bgcolor: 'transparent',
+        borderLeft: '25px solid black',
+        borderRight: '25px solid black',
+        borderBottom: '25px solid green',
+        borderTop: '25px solid green',
+        bgcolor: 'transparent', // needed for MUI Paper
+      },
+      ben10rounded: {
+        width: 0,
+        height: 0,
+        borderLeft: '25px solid black',
+        borderRight: '25px solid black',
+        borderBottom: '25px solid green',
+        borderTop: '25px solid green',
+        borderRadius: "50%",
+        bgcolor: 'transparent', // needed for MUI Paper
       },
     };
 
