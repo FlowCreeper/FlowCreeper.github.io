@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, CssBaseline } from '@mui/material';
+import { Box } from '@mui/material';
 import Sidebar from '../../components/sidebar';
 import DrawingArea from '../../components/drawingarea';
 

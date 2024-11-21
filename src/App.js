@@ -50,6 +50,7 @@ function App() {
         { id: 'grafos/conexo', label: 'Conexo - Desconexo' },
         { id: 'grafos/gnn', label: 'Rede neural - Grafos' },
         { id: 'grafos/planar', label: 'Planar' },
+        { id: 'grafos/arvore', label: 'Arvore' },
       ],
     },
     {
