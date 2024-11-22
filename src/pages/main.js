@@ -11,6 +11,7 @@ import Gnn from "./grafos/gnn";
 import Apresentacao from "./analise desempenho/apresentacao";
 import Planar from "./grafos/planar";
 import Arvore from "./grafos/arvore";
+import Djikstra from "./grafos/djikstra";
 
 const Main = () => {
   return (   
@@ -29,6 +30,7 @@ const Main = () => {
           <Route path="gnn" element={<Gnn/>}/>
           <Route path="planar" element={<Planar/>}/>
           <Route path="arvore" element={<Arvore/>}/>
+          <Route path="djikstra" element={<Djikstra/>}/>
         </Route>
         <Route path="analise/">
           <Route path="apresentacao" element={<Apresentacao />}/>

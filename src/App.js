@@ -51,6 +51,7 @@ function App() {
         { id: 'grafos/gnn', label: 'Rede neural - Grafos' },
         { id: 'grafos/planar', label: 'Planar' },
         { id: 'grafos/arvore', label: 'Arvore' },
+        { id: 'grafos/djikstra', label: 'Djikstra' },
       ],
     },
     {
