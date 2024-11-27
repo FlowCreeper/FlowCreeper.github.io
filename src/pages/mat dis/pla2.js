@@ -3,7 +3,8 @@ import {
   Container,
   TextField,
   Button,
-  Grid,
+  Grid2 as Grid,
+  Typography,
 } from "@mui/material";
 import {
   LineChart,
@@ -14,19 +15,24 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import { compile } from "mathjs"; // Import math.js
 
 const Atividade2 = () => {
   const [funcao, setFuncao] = useState("");
-  const [valorX, setValorX] = useState("");
+  const [valorX, setValorX] = useState(0);
   const [data, setData] = useState([]);
 
   const gerarReta = () => {
     const pontos = [];
     try {
+      if (!(valorX > 0)) return alert("Valor precisa ser maior que 0")
+
+      const normalizedFuncao = funcao.replace(/y\s*=\s*/, "").trim();
+      const expression = compile(normalizedFuncao)
       // Avalia a função linear para valores de x de -10 a 10
-      for (let x = -10; x <= 10; x++) {
+      for (let x = parseInt("-" + valorX); x <= parseInt(valorX); x++) {
         // Substitui o valor de x na função
-        const y = eval(funcao.replace(/x/g, x.toString()));
+        const y = expression.evaluate({ x })
         pontos.push({ x, y });
       }
       setData(pontos);
@@ -37,21 +43,22 @@ const Atividade2 = () => {
 
   return (
     <Container>
-      <h2>Atividade 2: Função Linear</h2>
+      <Typography variant="h5" pb={5}>Atividade 2: Função Linear</Typography>
       <Grid container spacing={2}>
-        <Grid item xs={6}>
+        <Grid size={{xs: 6}}>
           <TextField
-            label="Função Linear (ex: 2 * x + 3)"
+            label="Função Linear (ex: y = 2 * x + 3 )"
             variant="outlined"
             value={funcao}
             onChange={(e) => setFuncao(e.target.value)}
             fullWidth
           />
         </Grid>
-        <Grid item xs={6}>
+        <Grid size={{xs: 6}}>
           <TextField
-            label="Valor de X"
+            label="Intervalo de X (ex: 50 seria de -50 ate 50)"
             variant="outlined"
+            type="number"
             value={valorX}
             onChange={(e) => setValorX(e.target.value)}
             fullWidth
@@ -75,8 +82,32 @@ const Atividade2 = () => {
               <CartesianGrid stroke="#ccc" />
               <XAxis dataKey="x" />
               <YAxis />
-              <Tooltip />
-              <Line type="monotone" dataKey="y" stroke="#8884d8" />
+              <Tooltip
+                content={(props) => {
+                  const { active, payload } = props;
+                  // Tooltip only displays when active and payload exists
+                  if (active && payload && payload.length) {
+                    const { x, y } = payload[0].payload;
+                    return (
+                      <div
+                        style={{
+                          backgroundColor: "white",
+                          border: "1px solid green",
+                          paddingLeft: "20px",
+                          paddingRight: "20px",
+                          borderRadius: "5px",
+                          color: "black"
+                        }}
+                      >
+                        <p><strong>x:</strong> {x}</p>
+                        <p><strong>y:</strong> {y}</p>
+                      </div>
+                    );
+                  }
+                  return null;
+                }}
+              />
+              <Line type="linear" dataKey="y" stroke="#8884d8" />
             </LineChart>
           </ResponsiveContainer>
         )}

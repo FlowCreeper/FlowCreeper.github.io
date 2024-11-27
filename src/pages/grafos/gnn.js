@@ -7,6 +7,7 @@ const Gnn = () => {
   );
   const [train, setTrain] = useState([])
   const [show, setShow] = useState(false)
+  const [numero, setNumero] = useState(0)
 
   const toggleButton = (row, col) => {
     const newGrid = grid.map((r, rowIndex) =>
@@ -18,8 +19,10 @@ const Gnn = () => {
   };
 
   const handleTrain = () => {
-    // Implementar lógica de treinamento da rede neural
-    setTrain([...train, grid])
+    if (numero > 0)
+      // Implementar lógica de treinamento da rede neural
+      setTrain([...train, ...Array(numero).fill(grid)])
+    else alert("Número de treinos precisa ser maior que 0")
   };
 
   const handleRecognize = () => {
@@ -55,7 +58,7 @@ const Gnn = () => {
         </Grid>
       </Box>
       <Box display="flex" justifyContent="center" mt={3}>
-        <TextField type='number' label='Numero de Treinos' sx={{marginRight: 4}}/>
+        <TextField type='number' label='Numero de Treinos' sx={{marginRight: 4}} onChange={(e) => {setNumero(parseInt(e.target.value))}}/>
         <Button onClick={handleTrain} variant="contained" color="primary">
           Treinar
         </Button>
@@ -67,8 +70,8 @@ const Gnn = () => {
           {show && train.map((g, i) => {return (
             <Grid item>
               Treino: {i + 1}
-            {g.map((v) => { return (
-              <Typography sx={{textAlign: 'center'}}>
+            {g.map((v, i) => { return (
+              <Typography key={i} sx={{textAlign: 'center'}}>
                 {JSON.stringify(v)}
               </Typography>
             )})}
