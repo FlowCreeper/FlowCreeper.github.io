@@ -157,7 +157,7 @@ const DrawingArea = () => {
 
     const shapeStyles = {
       square: { width: 50, height: 50, bgcolor: 'blue' },
-      circle: { width: 50, height: 50, bgcolor: 'green', borderRadius: '50%' },
+      circle: { width: 50, height: 50, bgcolor: 'blue', borderRadius: '50%' },
       ben10: {
         width: 0,
         height: 0,

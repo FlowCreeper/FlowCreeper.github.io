@@ -78,7 +78,7 @@ const Arvore = () => {
 
   const handleAddChild = () => {
     if (selectedNode) {
-      const newChild = { id: itemId, name: `New Node ${itemId}` }; // Unique child node
+      const newChild = { id: itemId, name: nodeName === '' ? `New Node ${itemId}` : nodeName }; // Unique child node
       setItemId(itemId+1)
       const updatedTree = treeData.map((node) =>
         updateNodeInTree(node, selectedNode.data, {
