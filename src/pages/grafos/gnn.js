@@ -3,8 +3,11 @@ import { Button, Grid, Box, Container, Typography, TextField } from '@mui/materi
 
 const Gnn = () => {
   const [grid, setGrid] = useState(
-    Array(7).fill(null).map(() => Array(7).fill(-1))
+    Array(9).fill(null).map(() => Array(9).fill(-1))
   );
+  const [train, setTrain] = useState([])
+  const [show, setShow] = useState(false)
+  const [numero, setNumero] = useState(0)
 
   const toggleButton = (row, col) => {
     const newGrid = grid.map((r, rowIndex) =>
@@ -16,19 +19,21 @@ const Gnn = () => {
   };
 
   const handleTrain = () => {
-    // Implementar lógica de treinamento da rede neural
-    alert('Treinamento iniciado!');
+    if (numero > 0)
+      // Implementar lógica de treinamento da rede neural
+      setTrain([...train, ...Array(numero).fill(grid)])
+    else alert("Número de treinos precisa ser maior que 0")
   };
 
   const handleRecognize = () => {
     // Implementar lógica de reconhecimento de padrão
-    alert('Reconhecendo padrão...');
+    setShow(!show);
   };
 
   return (
     <Container>
       <Typography variant="h4" align="center" gutterBottom>
-        Reconhecimento de Padrões (7x7)
+        Reconhecimento de Padrões (9x9)
       </Typography>
       <Box display="flex" justifyContent="center">
         <Grid container spacing={1}>
@@ -53,7 +58,7 @@ const Gnn = () => {
         </Grid>
       </Box>
       <Box display="flex" justifyContent="center" mt={3}>
-        <TextField type='number' label='Numero de Treinos' sx={{marginRight: 4}}/>
+        <TextField type='number' label='Numero de Treinos' sx={{marginRight: 4}} onChange={(e) => {setNumero(parseInt(e.target.value))}}/>
         <Button onClick={handleTrain} variant="contained" color="primary">
           Treinar
         </Button>
@@ -61,14 +66,19 @@ const Gnn = () => {
           Reconhecer
         </Button>
       </Box>
-      {grid.map((v) => 
-      {
-        return (
-          <Typography sx={{textAlign: 'center'}}>
-            {JSON.stringify(v)}
-          </Typography>
-        )
-      })}
+      <Grid container spacing={5}>
+          {show && train.map((g, i) => {return (
+            <Grid item>
+              Treino: {i + 1}
+            {g.map((v, i) => { return (
+              <Typography key={i} sx={{textAlign: 'center'}}>
+                {JSON.stringify(v)}
+              </Typography>
+            )})}
+            </Grid>
+          )}
+          )}
+      </Grid>
     </Container>
   );
 };

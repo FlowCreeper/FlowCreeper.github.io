@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Container, Button, Box, IconButton } from "@mui/material";
-import { DataGrid, GridToolbar, GridToolbarContainer } from "@mui/x-data-grid";
+import { IconButton } from "@mui/material";
+import { DataGrid, GridToolbarContainer } from "@mui/x-data-grid";
 import { Add } from "@mui/icons-material";
 
 const Atividade1 = () => {
